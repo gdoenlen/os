@@ -1,6 +1,6 @@
 ; prints a string in protected mode without bios
 [bits 32]
-VIDEO_MEMORY equ 0xb8000
+VIDEO_MEMORY equ 0xb8000         ; 0xb8000 is the memory address of what gets printed to the screen
 WHITE_ON_BLACK equ 0x0f
 
 ; prints the string pointed to by EBX
