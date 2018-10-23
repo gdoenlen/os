@@ -41,7 +41,3 @@ gdt_descriptor:
 ; constants for th gdt offsets for the segment registers
 CODE_SEG equ gdt_code - gdt_start
 DATA_SEG equ gdt_data - gdt_start
-
-
-
-
