@@ -15,5 +15,7 @@ int get_offset(int row, int col);
 int get_cursor(void);
 int handle_scrolling(int offset);
 void set_cursor(int offset);
+void print_at(char* str, int col, int row);
+void print(char* str);
 
 #endif
