@@ -1,5 +1,6 @@
 #include "screen.h"
 #include "../kernel/io/port.h"
+#include "../kernel/util.h"
 
 /**
  * Prints a character to VGA memory. 
@@ -129,4 +130,36 @@ void clear_screen()
     }
 
     set_cursor(get_offset(0, 0));
+}
+
+int handle_scrolling(int offset)
+{
+    //not past the end of the screen yet
+    if (offset <= MAX_COLUMNS * MAX_ROWS * 2) {
+        return offset;
+    }
+
+    /*
+     * shuffles the rows back one
+     * we start at 1 because we don't want to 
+     * move the the first row beyond the start of VGA memory
+     */
+    int i = 1;
+    for (i; i < MAX_ROWS; i++) {
+        mem_copy(get_offset(0, i) + VIDEO_ADDRESS, get_offset(0, i - 1) + VIDEO_ADDRESS, MAX_COLUMNS * 2);
+    }
+
+    //zero out the last row of video memory to delete it
+    char* last_line = get_offset(0, MAX_ROWS - 1) + VIDEO_ADDRESS;
+    for (i = 0; i < MAX_COLUMNS * 2; i++) {
+        last_line[i] = 0;
+    }
+
+    /*
+     * move the cursor back one row so it is at the start
+     * of the last row instead of off the edge of video memory
+     */
+    offset -= MAX_COLUMNS * 2;
+
+    return offset;
 }

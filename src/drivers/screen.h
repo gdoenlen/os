@@ -13,6 +13,14 @@
 void print_char(char character, int col, int row, char attributes);
 int get_offset(int row, int col);
 int get_cursor(void);
+
+/**
+ * handles the scrolling of the screen when the cursor is at the maximum
+ * memory address. it moves all rows up and deletes the last row.
+ * 
+ * @param offset the position of the cursor offset
+ * @return the new position of the cursor offset
+ */
 int handle_scrolling(int offset);
 void set_cursor(int offset);
 void print_at(char* str, int col, int row);
