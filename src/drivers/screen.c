@@ -110,7 +110,7 @@ int get_cursor()
  * @param row the row where you want to place the cahracter
  * @return the int offset with video memory 
  */
-int get_offest(int col, int row)
+int get_offset(int col, int row)
 {
     return ((row * MAX_COLUMNS) + col) * 2;
 }
