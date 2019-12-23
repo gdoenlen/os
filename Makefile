@@ -1,5 +1,5 @@
-C_SOURCES = $(wildcard src/kernel/*.c src/drivers/*.c)
-HEADERS = $(wildcard src/kernel/*.h src/drivers/*.h)
+C_SOURCES = $(wildcard src/kernel/*.c src/drivers/*.c src/kernel/io/*.c)
+HEADERS = $(wildcard src/kernel/*.h src/drivers/*.h src/kernel/io/*.h)
 OBJ = ${C_SOURCES:.c=.o}
 
 all: os-image
@@ -25,8 +25,3 @@ kernel.bin: src/kernel/kernel_entry.o ${OBJ}
 clean:
 	rm -rf *.bin *.o os-image
 	rm -rf src/kernel/*.o src/boot/*.bin drivers/*.o
-
-
-
-
-
