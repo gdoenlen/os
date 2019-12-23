@@ -24,4 +24,4 @@ kernel.bin: src/kernel/kernel_entry.o ${OBJ}
 .PHONY: clean
 clean:
 	rm -rf *.bin *.o os-image
-	rm -rf src/kernel/*.o src/boot/*.bin drivers/*.o
+	rm -rf src/kernel/*.o src/boot/*.bin src/drivers/*.o src/kernel/io/*.o
